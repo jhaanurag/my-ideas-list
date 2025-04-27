@@ -13,7 +13,7 @@
 - the only one device you need
 - Minimal Living Survival Pack
 
-## Future/Blue Sky
+## Future
 *   Next-Gen UI/UX Framework, super fast interactions
 *   Interactive Data Visualization Generator
 *   Cursor Visual Mobile app

@@ -9,8 +9,6 @@
 *   Coding in Pseudocode
 *   Ask ai for any feature and it adds that to you device like a update
 
-
-
 ## Hardware
 - Portable Display battery pac Mac Mini
 - the only one device you need
@@ -20,5 +18,10 @@
 *   Next-Gen UI/UX Framework, super fast interactions
 *   Interactive Data Visualization Generator
 *   Cursor Visual Mobile app
+
+## Game/Fun
+-   Make iphone 1000 game
+-   Creative word games
+-   Reinventing Common stuff
 
 more coming...

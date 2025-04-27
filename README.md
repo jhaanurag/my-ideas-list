@@ -1,9 +1,12 @@
 ### i overflow with ideas so i will drop some here
-## AI
+## Software
 *   AI Businessman
 *   AI Digital Marketing agency
 *   AI Opportunities Finder
 *   AI 24/7 assistant/worker/intern
+*   AI CEO/CMO/other non tech roles
+*   System Diagram to App
+*   Coding in Pseudocode
 
 ## Hardware
 - Portable Display battery pac Mac Mini

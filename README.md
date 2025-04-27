@@ -1,6 +1,6 @@
 ### i overflow with ideas so i will drop some here
 ## Software
-*   AI Businessman
+*   AI entrepreneur
 *   AI Digital Marketing agency
 *   AI Opportunities Finder
 *   AI 24/7 assistant/worker/intern
@@ -8,6 +8,7 @@
 *   System Diagram to App
 *   Coding in Pseudocode
 *   Ask ai for any feature and it adds that to you device like a update
+*   AI market analysis
 
 ## Hardware
 - Portable Display battery pac Mac Mini

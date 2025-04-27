@@ -7,6 +7,9 @@
 *   AI CEO/CMO/other non tech roles
 *   System Diagram to App
 *   Coding in Pseudocode
+*   Ask ai for any feature and it adds that to you device like a update
+
+
 
 ## Hardware
 - Portable Display battery pac Mac Mini

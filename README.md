@@ -11,6 +11,9 @@
 *   AI market analysis
 *   Time Optimizer AI
 *   Bad Advice/Idea Rejector
+*   alternate history finder
+*   b2b opportunitiess finder
+*   Roblox ecosystem
   
 ## Hardware
 - Portable Display battery pac Mac Mini

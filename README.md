@@ -10,7 +10,7 @@
 *   Ask ai for any feature and it adds that to you device like a update
 *   AI market analysis
 *   Time Optimizer AI
-*   Shitty Advice/Idea Rejector
+*   Bad Advice/Idea Rejector
   
 ## Hardware
 - Portable Display battery pac Mac Mini

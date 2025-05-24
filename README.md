@@ -14,6 +14,8 @@
 *   alternate history finder
 *   b2b opportunitiess finder
 *   Roblox ecosystem
+*   AI based business idea generator/stealer form hypercompetitive markets
+*   barrier to entry breaker
   
 ## Hardware
 - Portable Display battery pac Mac Mini
@@ -29,5 +31,7 @@
 -   Make iphone 1000 game
 -   Creative word games
 -   Reinventing Common stuff
+-   AI based dyanmic visual novel
+-   AI gen "creative" creative games
 
 more coming...

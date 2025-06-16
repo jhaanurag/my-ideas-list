@@ -8,10 +8,163 @@
     <style>
         * {
             box-sizing: border-box;
-            font-family: monospace;
             margin: 0;
             padding: 0;
-            color: #333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fefefe;
+            padding: 2rem 1rem;
+            max-width: 42rem;
+            margin: 0 auto;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            color: #111;
+            text-align: center;
+        }
+
+        #filter-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.75rem 0;
+            font-size: 1rem;
+            background: transparent;
+            outline: none;
+            margin-bottom: 2rem;
+            transition: border-color 0.2s ease;
+            font-family: inherit;
+        }
+
+        #filter-input:focus {
+            border-bottom-color: #333;
+        }
+
+        #filter-input::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+        #ideas-list-container {
+            margin-top: 1rem;
+        }
+
+        .idea-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.15s ease;
+            cursor: default;
+            font-size: 0.95rem;
+        }
+
+        .idea-item:hover {
+            background: #fafafa;
+            padding-left: 0.5rem;
+            margin-left: -0.5rem;
+            border-radius: 2px;
+        }
+
+        .idea-item:last-child {
+            border-bottom: none;
+        }
+
+        .message {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 2rem 0;
+        }
+
+        .error-message {
+            color: #d32f2f;
+        }
+
+        /* Subtle animations */
+        .idea-item {
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .idea-item:nth-child(1) { animation-delay: 0.05s; }
+        .idea-item:nth-child(2) { animation-delay: 0.1s; }
+        .idea-item:nth-child(3) { animation-delay: 0.15s; }
+        .idea-item:nth-child(4) { animation-delay: 0.2s; }
+        .idea-item:nth-child(5) { animation-delay: 0.25s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Focus states for accessibility */
+        .idea-item:focus {
+            outline: 2px solid #007acc;
+            outline-offset: 2px;
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #0d1117;
+                color: #e6edf3;
+            }
+            
+            h1 {
+                color: #f0f6fc;
+            }
+            
+            #filter-input {
+                color: #e6edf3;
+                border-bottom-color: #30363d;
+            }
+            
+            #filter-input:focus {
+                border-bottom-color: #58a6ff;
+            }
+            
+            #filter-input::placeholder {
+                color: #7d8590;
+            }
+            
+            .idea-item {
+                border-bottom-color: #21262d;
+            }
+            
+            .idea-item:hover {
+                background: #161b22;
+            }
+            
+            .message {
+                color: #8b949e;
+            }
+            
+            .error-message {
+                color: #f85149;
+            }
         }
     </style>
 </head>

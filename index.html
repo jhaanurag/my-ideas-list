@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: monospace;
             line-height: 1.6;
             color: #1a1a1a;
             background: #fefefe;
@@ -34,12 +34,31 @@
             text-align: center;
         }
 
+        #font-toggle {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: #999;
+            font-family: inherit;
+        }
+
+        #font-toggle:hover {
+            color: #ff0073;
+            text-decoration: underline;
+        }
+
+
         #filter-input {
             width: 100%;
             border: none;
             border-bottom: 1px solid #e0e0e0;
             padding: 0.75rem 0;
-            font-size: 1rem;
+            font-size: 1.25rem;
             background: transparent;
             outline: none;
             margin-bottom: 2rem;
@@ -65,11 +84,12 @@
             border-bottom: 1px solid #f0f0f0;
             /* transition: all 0.15s ease; */
             cursor: default;
-            font-size: 0.95rem;
+            font-size: 1.25rem;
         }
 
         .idea-item:hover {
-            background: #fafafa;
+            text-decoration: underline;
+            color: #ff0073;
         }
 
         .idea-item:last-child {
@@ -108,6 +128,12 @@
                 font-size: 2rem;
                 margin-bottom: 1.5rem;
             }
+            
+            #font-toggle {
+                top: 1rem;
+                right: 1rem;
+                font-size: 0.8rem;
+            }
         }
 
         .idea-item:focus {
@@ -138,12 +164,22 @@
                 color: #7d8590;
             }
             
+            #font-toggle {
+                color: #666;
+            }
+            
+            #font-toggle:hover,
+            #font-toggle:focus {
+                color: #e6edf3;
+            }
+            
             .idea-item {
                 border-bottom-color: #21262d;
             }
             
             .idea-item:hover {
-                background: #161b22;
+                text-decoration: underline;
+                color: #ff0073;
             }
             
             .message {
@@ -159,6 +195,8 @@
 
 <body>
 
+    <button id="font-toggle" title="Toggle font family">Aa</button>
+
     <h1>Ideas</h1>
 
     <input type="text" id="filter-input" placeholder="Fuzzy search ideas..."">
@@ -171,6 +209,12 @@
         let originalIdeasData = [];
         const ideasContainer = document.getElementById('ideas-list-container');
         const filterInput = document.getElementById('filter-input');
+        const fontToggle = document.getElementById('font-toggle');
+        
+        // Font cycling system
+        const fonts = ['monospace', 'sans-serif', 'serif'];
+        const fontNames = ['Mono', 'Sans', 'Serif'];
+        let currentFontIndex = 0;
 
         /**
          * Fuzzy search algorithm that matches ideas based on character sequence similarity
@@ -296,7 +340,21 @@
                 });
 
             filterInput.addEventListener('input', handleFilter);
+            fontToggle.addEventListener('click', toggleFont);
+            
+            // Set initial font display
+            updateFontDisplay();
         });
+
+        function toggleFont() {
+            currentFontIndex = (currentFontIndex + 1) % fonts.length;
+            document.body.style.fontFamily = fonts[currentFontIndex];
+            updateFontDisplay();
+        }
+
+        function updateFontDisplay() {
+            fontToggle.textContent = fontNames[currentFontIndex];
+        }
 
         function renderIdeas(ideasToRender) {
             ideasContainer.innerHTML = '';

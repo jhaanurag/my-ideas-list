@@ -167,10 +167,10 @@
             ideasToRender.forEach(idea => {
                 if (idea && typeof idea.id === 'string' && typeof idea.name === 'string') {
                     const summaryElement = document.createElement('summary');
+                    const detailsElement = document.createElement('details');
                     summaryElement.textContent = idea.name;
                     detailsElement.appendChild(summaryElement);
                     
-                    // const detailsElement = document.createElement('details');
                     // const idContainer = document.createElement('div');
                     // idContainer.textContent = `ID: ${idea.id}`;
                     // detailsElement.appendChild(idContainer);

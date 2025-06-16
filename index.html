@@ -1,72 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ideas from README</title>
     <style>
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #fdfdfd;
-            color: #333;
-            padding: 15px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            color: #444;
-            margin-bottom: 25px;
-        }
-
-        #filter-input {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        #ideas-list-container {
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-        }
-
-        .idea-item {
-            border-bottom: 1px solid #eee;
-            padding: 12px 8px;
-            margin-bottom: 5px;
-            font-weight: 500;
-            transition: background-color 0.1s ease;
-        }
-
-        .idea-item:hover {
-             background-color: #f0f0f0;
-        }
-
-        .idea-item:nth-of-type(even) {
-             background-color: #f9f9f9;
-        }
-        .idea-item:nth-of-type(even):hover {
-            background-color: #e9e9e9;
-        }
-
-        .message {
-            color: #777;
-            text-align: center;
-            padding: 20px;
-        }
-        .error-message {
-            color: #dc3545;
-            font-weight: bold;
-        }
-
     </style>
 </head>
+
 <body>
 
     <h1>Ideas from README</h1>
@@ -108,7 +50,7 @@
                 .then(markdownText => {
                     originalIdeasData = parseMarkdownIdeas(markdownText);
                     if (originalIdeasData.length === 0) {
-                         console.warn("No ideas found in README.md using the list format ('- ', '* ', '+ ').");
+                        console.warn("No ideas found in README.md using the list format ('- ', '* ', '+ ').");
                     }
                     renderIdeas(originalIdeasData);
                 })
@@ -125,8 +67,8 @@
 
             if (ideasToRender.length === 0) {
                 ideasContainer.innerHTML = `<p class="message">No ideas match your filter.</p>`;
-                if(originalIdeasData.length === 0 && filterInput.value === '') {
-                     ideasContainer.innerHTML = `<p class="message">No ideas found in README.md or format not recognized.</p>`;
+                if (originalIdeasData.length === 0 && filterInput.value === '') {
+                    ideasContainer.innerHTML = `<p class="message">No ideas found in README.md or format not recognized.</p>`;
                 }
                 return;
             }
@@ -154,4 +96,5 @@
     </script>
 
 </body>
+
 </html>

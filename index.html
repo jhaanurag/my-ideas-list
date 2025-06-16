@@ -13,7 +13,7 @@
 
     <h1>Ideas from README</h1>
 
-    <input type="text" id="filter-input" placeholder="Filter ideas by name...">
+    <input type="text" id="filter-input" placeholder="Fuzzy search ideas..."">
 
     <div id="ideas-list-container">
         <p class="message">Loading ideas from README.md...</p>
@@ -23,6 +23,94 @@
         let originalIdeasData = [];
         const ideasContainer = document.getElementById('ideas-list-container');
         const filterInput = document.getElementById('filter-input');
+
+        /**
+         * Fuzzy search algorithm that matches ideas based on character sequence similarity
+         * 
+         * Algorithm Overview:
+         * 1. First checks for exact substring matches (highest priority)
+         * 2. Then performs fuzzy matching by finding all search characters in order
+         * 3. Scores matches based on character ratio, length ratio, and consecutive matches
+         * 
+         * @param {string} searchText - The user's search input
+         * @param {string} targetText - The idea text to match against
+         * @returns {Object} - { match: boolean, score: number (0-1) }
+         */
+        function fuzzySearch(searchText, targetText) {
+            // Handle edge cases: empty search matches everything, empty target matches nothing
+            if (!searchText) return { match: true, score: 1 };
+            if (!targetText) return { match: false, score: 0 };
+
+            // Convert to lowercase for case-insensitive matching
+            const search = searchText.toLowerCase();
+            const target = targetText.toLowerCase();
+
+            // PHASE 1: Exact substring matching
+            // If the search text appears as a continuous substring, give it perfect score
+            // Example: "java" exactly matches in "JavaScript framework"
+            if (target.includes(search)) {
+                return { match: true, score: 1 };
+            }
+
+            // PHASE 2: Fuzzy character-by-character matching
+            // Track positions in both strings as we iterate through them
+            let searchIndex = 0;    // Current position in search string
+            let targetIndex = 0;    // Current position in target string
+            
+            // Scoring variables
+            let matchedChars = 0;        // Total characters from search found in target
+            let consecutiveMatches = 0;   // Current streak of consecutive character matches
+            let maxConsecutive = 0;       // Longest streak of consecutive matches found
+
+            // Walk through the target string, trying to match each search character in order
+            while (searchIndex < search.length && targetIndex < target.length) {
+                // Check if current characters match
+                if (search[searchIndex] === target[targetIndex]) {
+                    // Found a match! Update our tracking variables
+                    matchedChars++;
+                    consecutiveMatches++;
+                    maxConsecutive = Math.max(maxConsecutive, consecutiveMatches);
+                    
+                    // Move to next character in search string
+                    searchIndex++;
+                } else {
+                    // No match - reset consecutive counter but continue searching
+                    consecutiveMatches = 0;
+                }
+                
+                // Always advance through the target string
+                targetIndex++;
+            }
+
+            // PHASE 3: Validation
+            // For a valid fuzzy match, ALL characters from search must be found
+            // Example: searching "js" requires both 'j' and 's' to be found in order
+            if (matchedChars < search.length) {
+                return { match: false, score: 0 };
+            }
+
+            // PHASE 4: Scoring Algorithm
+            // Calculate a score from 0 to 1 based on match quality
+            
+            // Character ratio: How many search chars were found (should be 1.0 for valid matches)
+            const charRatio = matchedChars / search.length;
+            
+            // Length ratio: Shorter searches in longer targets get lower scores
+            // Example: "js" in "JavaScript" scores higher than "js" in "just a very long sentence"
+            const lengthRatio = search.length / target.length;
+            
+            // Consecutive bonus: Reward matches where characters appear close together
+            // Example: "react" scores higher in "React app" than in "real active creative tool"
+            const consecutiveBonus = maxConsecutive / search.length;
+            
+            // Weighted combination of scoring factors:
+            // - 50% weight on character matching (most important)
+            // - 30% weight on length efficiency (prefer shorter targets)
+            // - 20% weight on consecutive character clusters (prefer grouped matches)
+            const score = (charRatio * 0.5) + (lengthRatio * 0.3) + (consecutiveBonus * 0.2);
+            
+            return { match: true, score };
+        }
 
         function parseMarkdownIdeas(markdownText) {
             const ideas = [];
@@ -86,11 +174,24 @@
         }
 
         function handleFilter() {
-            const filterText = filterInput.value.toLowerCase().trim();
-            const filteredIdeas = originalIdeasData.filter(idea => {
-                return idea && idea.toLowerCase().includes(filterText);
-            });
-            renderIdeas(filteredIdeas);
+            const filterText = filterInput.value.trim();
+            
+            if (!filterText) {
+                renderIdeas(originalIdeasData);
+                return;
+            }
+
+            // Get fuzzy search results with scores
+            const searchResults = originalIdeasData
+                .map(idea => {
+                    const result = fuzzySearch(filterText, idea);
+                    return { idea, ...result };
+                })
+                .filter(result => result.match)
+                .sort((a, b) => b.score - a.score) // Sort by score descending
+                .map(result => result.idea);
+
+            renderIdeas(searchResults);
         }
 
     </script>

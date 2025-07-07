@@ -1,8 +1,8 @@
 ### i overflow with ideas so i will drop some here
 ## Software
 *   AI entrepreneur
-*   AI Digital Marketing agency
-*   AI Opportunities Finder
+*   AI marketing
+*   AI market gaps finder
 *   AI 24/7 assistant/worker/intern
 *   AI CEO/CMO/other non tech roles
 *   System Diagram to App

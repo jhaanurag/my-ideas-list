@@ -1,6 +1,7 @@
 ### i overflow with ideas so i will drop some here
 ## Software
 *   AI entrepreneur
+*   JSON prompt generator and CRUD 
 *   AI marketing
 *   AI market gaps finder
 *   AI 24/7 assistant/worker/intern
